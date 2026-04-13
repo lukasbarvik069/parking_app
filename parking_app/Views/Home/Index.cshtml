@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if(User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Ahoj, @User.Identity.Name!</h1>
+        @if (User.IsInRole("Admin"))
+        {
+            <span class="badge bg-danger">Administrátor</span>
+        }
+    }else
+    {
+        <h1 class="display-4">Parking app</h1>
+    }
+</div>

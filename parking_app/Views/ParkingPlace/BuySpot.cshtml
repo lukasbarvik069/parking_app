@@ -1,0 +1,54 @@
+﻿@using parking_app.ViewModels
+@model BuySpotViewModel
+@{
+    ViewData["Title"] = "Buy spot page";
+}
+
+<div class="card">
+    <div class="card-body p-4">
+        <h2 class="card-title text-center mb-4">Koupení parkování</h2>
+        <p>@ViewBag.ppName</p>
+        <form asp-controller="ParkingPlace" asp-action="BuySpot" asp-route-id="@ViewContext.RouteData.Values["id"]" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3 small"></div>
+
+            <div class="mb-3">
+                <select asp-for="SpzId" class="form-control"
+                    asp-items="@(new SelectList(ViewBag.spzs ?? new List<Spz>(), "Id", "Name"))"
+                >
+                    <option value=""> -- Vyberte SPZ -- </option>
+                </select>
+                <span asp-validation-for="SpzId" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Duration" class="form-label">Doba parkování</label>
+                <input asp-for="Duration" type="number" value="1" min="1" max="24" class="form-control" oninput="ChangePrice(this.value)" />
+                <span asp-validation-for="Duration" class="text-danger small"></span>
+            </div>
+
+            <div>
+                <p>Cena: <span class="priceCount">@ViewBag.ppPrice Kč</span></p>
+                <input type="hidden" asp-for="Price" id="hiddenPrice" value="@ViewBag.ppPrice" />
+            </div>
+
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Zaplatit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const priceHolder = document.querySelector(".priceCount");
+    const hiddenPriceInput = document.getElementById("hiddenPrice");
+    const pricePerHour = @ViewBag.ppPrice; 
+
+    function ChangePrice(hours) {
+        const total = hours * pricePerHour;
+
+        priceHolder.innerHTML = total + " Kč";
+
+        hiddenPriceInput.value = total;
+    }
+</script>

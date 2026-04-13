@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Spz>
+
+@{
+    ViewData["Title"] = "Spz page";
+}
+<div class="container mt-4" style="max-width: 800px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+                <i class="bi bi-card-list me-2"></i> Správa mých vozidel
+            </h5>
+            <a class="btn btn-light btn-sm fw-bold text-primary" asp-controller="Spz" asp-action="Create">
+                <i class="bi bi-plus-lg me-1"></i> Přidat SPZ
+            </a>
+        </div>
+
+        <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+                @foreach (var s in Model)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-2 me-3">
+                                <i class="bi bi-car-front text-primary"></i>
+                            </div>
+                            <span class="h5 mb-0 fw-bold">@s.Name</span>
+                        </div>
+
+                        <div class="btn-group">
+                            <form asp-action="Delete" asp-route-id="@s.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-danger btn-sm ms-2"
+                                        onclick="return confirm('Opravdu smazat vozidlo @s.Name?')">
+                                    <i class="bi bi-trash"></i> Smazat
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                }
+
+                @if (!Model.Any())
+                {
+                    <li class="list-group-item text-center py-5 text-muted">
+                        <i class="bi bi-info-circle d-block mb-2 h3"></i>
+                        Zatím nemáte zaregistrovanou žádnou SPZ.
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="card-footer bg-light py-2 small text-muted text-center">
+            Celkem vozidel: @Model.Count()
+        </div>
+    </div>
+</div>

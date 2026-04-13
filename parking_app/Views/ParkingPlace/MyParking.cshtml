@@ -1,0 +1,68 @@
+﻿@model User
+@{
+    ViewData["Title"] = "my parking page";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Přehled mých vozidel a parkování</h2>
+
+    @foreach (var s in Model.Spzs)
+    {
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-car-front-fill me-2"></i> @s.Name
+                </h5>
+                <span class="badge bg-light text-dark">
+                    Záznamů: @s.SpzParkingPlaces.Count()
+                </span>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Parkoviště</th>
+                                <th>Začátek</th>
+                                <th>Konec</th>
+                                <th>Cena</th>
+                                <th class="text-center">Stav</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var spp in s.SpzParkingPlaces)
+                            {
+                                var isActive = DateTime.Now >= spp.Date.Start && DateTime.Now < spp.Date.End;
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">@spp.ParkingPlace.Name</td>
+                                    <td>@spp.Date.Start.ToString("g")</td>
+                                    <td>@spp.Date.End.ToString("g")</td>
+                                    <td><strong>@spp.Price Kč</strong></td>
+                                    <td class="text-center">
+                                        @if (isActive)
+                                        {
+                                            <span class="badge rounded-pill bg-success">Aktivní</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge rounded-pill bg-light text-dark border">Neaktivní</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if (!s.SpzParkingPlaces.Any())
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-4 italic">
+                                        Pro toto vozidlo nebyly nalezeny žádné záznamy o parkování.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

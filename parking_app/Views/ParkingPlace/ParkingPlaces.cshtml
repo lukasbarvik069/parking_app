@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ParkingPlace>
+@{
+    ViewData["Title"] = "places info page";
+}
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4 text-center">Přehled obsazenosti parkovišť</h2>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 align-items-start">
+        @foreach (var pp in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                         style="cursor: pointer;"
+                         data-bs-toggle="collapse"
+                         data-bs-target="#collapse-@pp.Id">
+
+                        <h5 class="mb-0">
+                            <i class="bi bi-chevron-down me-2 small"></i>@pp.Name
+                        </h5>
+                        <span class="badge bg-light text-dark">
+                            @pp.SpzParkingPlaces.Count() / @pp.Capacity
+                        </span>
+                    </div>
+
+                    <div class="collapse" id="collapse-@pp.Id">
+                        <div class="card-body">
+                            @if (pp.SpzParkingPlaces.Any())
+                            {
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Aktuálně parkující (SPZ)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var spp in pp.SpzParkingPlaces)
+                                        {
+                                            <tr>
+                                                <td><i class="bi bi-car-front me-2"></i>@spp.Spz.Name</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <p class="text-muted text-center my-3 fw-italic">Parkoviště je momentálně prázdné.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
