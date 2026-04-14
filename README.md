@@ -6,7 +6,7 @@ Projekt jednoduchého parkovacího systému. Aplikace umožňuje uživatelům re
 - **Autentizace a autorizace:** Registrace uživatelů a správa rolí pomocí ASP.NET Core Identity.
 - **Uživatelský profil:** Možnost zaregistrovat si jednu nebo více SPZ k účtu.
 - **Parkovací systém:** Simulace nákupu parkovacího lístku pro konkrétní vozidlo.
-- **Administrátorská sekce:** Speciální přístup pro správu systému (označeno badge v UI).
+- **Administrátorská sekce:** Speciální přístup pro detail parkovišť.
 
 ## 🛠 Použité technologie
 - **Backend:** ASP.NET Core 8.0 (MVC)
