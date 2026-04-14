@@ -11,7 +11,7 @@ Projekt jednoduchého parkovacího systému. Aplikace umožňuje uživatelům re
 ## Použité technologie
 - **Backend:** ASP.NET Core 8.0 (MVC)
 - **Frontend:** Razor Views, Bootstrap 5
-- **Databáze:** Entity Framework Core (SQL Server)
+- **Databáze:** Entity Framework Core (SQLite)
 - **Identity:** Správa uživatelů a rolí
 
 ## Testovací údaje
