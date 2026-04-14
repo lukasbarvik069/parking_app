@@ -41,7 +41,7 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-primary fw-bold" asp-controller="ParkingPlace" asp-action="ParkingPlaces">
-                                    <i class="bi bi-shield-lock me-1"></i>Obsazenost
+                                    <i class="bi bi-shield-lock me-1">Obsazenost</i>
                                 </a>
                             </li>
                         }
@@ -51,7 +51,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item d-flex align-items-center">
-                                <span class="nav-link text-muted me-2 small">Ahoj, @User.Identity.Name!</span>
+                                <span class="nav-link text-muted me-2 small">@User.Identity.Name!</span>
                             </li>
                             <li class="nav-item">
                                 <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">

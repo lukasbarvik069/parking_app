@@ -5,13 +5,21 @@
 <div class="text-center">
     @if(User.Identity.IsAuthenticated)
     {
-        <h1 class="display-4">Ahoj, @User.Identity.Name!</h1>
+        <h1 class="display-4">Ahoj!</h1>
         @if (User.IsInRole("Admin"))
         {
             <span class="badge bg-danger">Administrátor</span>
         }
-    }else
+    }
+    <h1 class="display-4">Parking app</h1>
+    <p>1. Zaregistruj se nebo přihlaš</p>
+    <p>2. Zaregistruj si SPZ svého auta</p>
+    <p>3. Kup si parkování</p>
+    @if (!User.Identity.IsAuthenticated)
     {
-        <h1 class="display-4">Parking app</h1>
+        <div class="d-flex justify-content-center gap-2">
+            <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login">Přihlásit se</a>
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Registrace</a>
+        </div>
     }
 </div>
