@@ -15,7 +15,7 @@ Projekt jednoduchého parkovacího systému. Aplikace umožňuje uživatelům re
 - **Identity:** Správa uživatelů a rolí
 
 ## Testovací údaje
-Pro účely testování a kontroly projektu můžete využít předvytvořený administrátorský účet:
+Pro účely testování projektu můžete využít předvytvořený administrátorský účet:
 
 * **Email:** `admin@example.com`
 * **Heslo:** `Heslo123`
